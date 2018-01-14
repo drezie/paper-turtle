@@ -3822,32 +3822,32 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
             <span>v0.2.2</span>
         </div>
         <h5>
-            <span class="alert-box red private">
+            <span class="alert-box private-box red private">
                 <strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.
             </span>
         </h5>
-        <div class="row box d-print-none">
-            <div class="col-6 d-print-none">
-                <div class="info-box ebox">
+        <div class="row box d-print-none erow">
+            <div class="col-6 d-print-none ecol">
+                <div class="info-box button-bottom ebox">
                     <div class="step-1">
                         <h3>Step 1</h3>
                         <p>Select your language and click
                             <strong>OK</strong>.</p>
                         <center>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
-                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
-                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
+                                <button class="trtl-button green multi btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
+                                <button class="trtl-button green btn multi btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
+                                <button class="trtl-button green btn multi btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
                             </div>
                         </center>
                         <br>
-                        <center>
+                        <div class="button-wrap">
                             <button class="trtl-button green btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
-                        </center>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-6 d-print-none">
+            <div class="col-6 d-print-none ecol">
                 <div class="info-box ebox">
                     <h3>Step 2 (optional)</h3>
                     <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys
@@ -3869,11 +3869,10 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                     <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money.
                         You can also send this address to someone as a QR code by clicking the QR link.</p>
                     <h3 class="d-print-block">Public Address</h3>
-                    <div class="alert-box col border border-success" style="padding: 1em;">
+                    <div class="alert-box address-box col border border-success" style="padding: 1em;">
                         <center>
                             <strong>
                                 <span style="font-family: monospace, monospace; word-wrap: break-word;" class="" id="address_widget">Reticulating Splines...</span>
-
                             </strong>
                         </center>
                     </div>
@@ -3928,10 +3927,14 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                                     <small style="font-family: monospace, monospace; word-wrap: break-word;" id="wallet_keys_widget">Generating...</small>
                                 </span>
                             </div>
-                                <button class="trtl-button green btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate New Wallet</button>
-                                <br>
-                                <input class="trtl-button green" type="button" onClick="window.print()" class="btn btn-default" value="Print This Page" />
                         </div>
+                    </div>
+                    <div class="button-wrap">
+                        <button class="trtl-button green btn btn-default " onclick="js:genwallet(null);" type="button" value="Generate wallet">
+                            Generate New Wallet</button>
+                    </div>
+                    <div class="button-wrap">
+                        <input type="button" onClick="window.print()" class="trtl-button btn btn-default text-link" value="Print This Page" />
                     </div>
                 </div>
             </div>

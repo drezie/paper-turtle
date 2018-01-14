@@ -3755,13 +3755,33 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
         }
         scroll();
     }
-    window.onload = function () {
-        var el = document.getElementById('get-started');
-        
-        if (el) {
-            el.addEventListener('click', () => scrollIt(document.getElementById('content').offsetTop - document.querySelector('.nav').clientHeight, 1000, 'easeOutQuart'));
+    function equalHeights(className) {
+        var findClass = document.getElementsByClassName(className);
+        var tallest = 0;
+        // Loop over matching divs
+        for (i = 0; i < findClass.length; i++) {
+            var ele = findClass[i];
+            var eleHeight = ele.offsetHeight;
+            tallest = (eleHeight > tallest ? eleHeight : tallest); /* look up ternary operator if you dont know what this is */
+        }
+        for (i = 0; i < findClass.length; i++) {
+            findClass[i].style.height = tallest + "px";
         }
     }
+    window.onload = function () {
+        equalHeights('ebox');
+        var start = document.getElementById('get-started');
+        var up = document.getElementById('up');
+        if (start) {
+            start.addEventListener('click', () => scrollIt(document.getElementById('content').offsetTop - document.querySelector('.nav').clientHeight, 1000, 'easeOutQuart'));
+        }
+        if (up) {
+            up.addEventListener('click', () => scrollIt(document.getElementById('content').offsetTop - document.querySelector('.nav').clientHeight, 1000, 'easeOutQuart'));
+        }
+    }
+    window.onresize = function (event) {
+        equalHeights('ebox');
+    };
 </script>
 <!-- Begin Header -->
 <div id="particles-js"></div>
@@ -3796,39 +3816,39 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
 </div>
 <div class="content" id="content">
     <div class="container">
+        <div class="trtl-logo">
+            <h3>TurtleCoin Wallet Generator</h3>
+            <img class="img-fluid" src="images/trtl.svg" alt="TurtleCoin">
+            <span>v0.2.2</span>
+        </div>
         <h5>
-            <span class="private">
-                <strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show
-                anyone.
+            <span class="alert-box red private">
+                <strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.
             </span>
         </h5>
         <div class="row box d-print-none">
             <div class="col-6 d-print-none">
-                <div class="info-box">
-                    <div class="logo">
-                        <img class="img-fluid" src="images/trtl.svg" alt="TurtleCoin">
-                        <span>v0.2.2</span>
-                    </div>
+                <div class="info-box ebox">
                     <div class="step-1">
                         <h3>Step 1</h3>
                         <p>Select your language and click
                             <strong>OK</strong>.</p>
                         <center>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button class="btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
-                                <button class="btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
-                                <button class="btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
+                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
+                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
+                                <button class="trtl-button green btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
                             </div>
                         </center>
                         <br>
                         <center>
-                            <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
+                            <button class="trtl-button green btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
                         </center>
                     </div>
                 </div>
             </div>
             <div class="col-6 d-print-none">
-                <div class="info-box">
+                <div class="info-box ebox">
                     <h3>Step 2 (optional)</h3>
                     <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys
                         more complex, or leave it empty. Press "Regenerate" when you are done.</p>
@@ -3837,7 +3857,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                     <br />
                     <br />
                     <center>
-                        <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Regenerate Address</button>
+                        <button class="trtl-button green btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Regenerate Address</button>
                     </center>
                 </div>
             </div>
@@ -3849,7 +3869,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                     <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money.
                         You can also send this address to someone as a QR code by clicking the QR link.</p>
                     <h3 class="d-print-block">Public Address</h3>
-                    <div class="col border border-success" style="padding: 1em;">
+                    <div class="alert-box col border border-success" style="padding: 1em;">
                         <center>
                             <strong>
                                 <span style="font-family: monospace, monospace; word-wrap: break-word;" class="" id="address_widget">Reticulating Splines...</span>
@@ -3862,7 +3882,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                         id="address_qr_widget" onclick="js:toggle_qr();"></span>
                     <br />
                     <center class="d-print-none">
-                        <button class="btn btn-default" href="#" onclick="js:toggle_qr();">Click to see QR Code</button>
+                        <button class="trtl-button green btn btn-default" href="#" onclick="js:toggle_qr();">Click to see QR Code</button>
                     </center>
                 </div>
             </div>
@@ -3876,7 +3896,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                         your money. That also means you need to keep them safe and private.</p>
                     <p class="d-print-block">This is your seed phrase. You can use it to regenerate your wallet if you lose it.</p>
                     <em>
-                        <div class="col border border-danger" style="font-family: monospace, monospace; padding: 1em;">
+                        <div class="alert-box col border border-danger" style="font-family: monospace, monospace; padding: 1em;">
                             <span class="private">
                                 <span id="mnemonic_widget">Reticulating Splines...</span>
                             </span>
@@ -3889,31 +3909,28 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                         </div>
                     </div>
                     <div class="col">
-                        <div class="row border border-danger" style="padding:1em;">
-                            <div class="col-3">
+                        <div class="alert-box row border border-danger" style="padding:1em;">
+                            <div class="col-3 half">
                                 <strong>Spend Key:</strong>
                                 <span class="private">
                                     <span style="font-family: monospace, monospace; word-wrap: break-word;" id="spend_key_widget">Generating...</span>
                                 </span>
                             </div>
-                            <div class="col-3">
+                            <div class="col-3 half">
                                 <strong>View Key:</strong>
                                 <span class="private">
                                     <span style="font-family: monospace, monospace; word-wrap: break-word;" id="view_key_widget">Generating...</span>
                                 </span>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 full">
                                 <strong>GUI Wallet Key:</strong>
                                 <span class="private-sm">
                                     <small style="font-family: monospace, monospace; word-wrap: break-word;" id="wallet_keys_widget">Generating...</small>
                                 </span>
                             </div>
-                            <div class="col-12">
-                                <center>
-                                    <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate New Wallet</button>
-                                    <input type="button" onClick="window.print()" class="btn btn-default" value="Print This Page" />
-                                </center>
-                            </div>
+                                <button class="trtl-button green btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate New Wallet</button>
+                                <br>
+                                <input class="trtl-button green" type="button" onClick="window.print()" class="btn btn-default" value="Print This Page" />
                         </div>
                     </div>
                 </div>
@@ -3924,7 +3941,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
                 <h2>TURTLECOIN</h2>
                 <div class="wrap">
                     <hr>
-                    <div class="trtl-button green up">Up</div>
+                    <div id="up" class="trtl-button green up">Up</div>
                 <p class="no-margin">© RockSteady, TurtleCoin Project</p></div>
             </div>
         </div>

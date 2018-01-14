@@ -2,13 +2,16 @@
 <head>
 <title>TurtleCoin Wallet Generator</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-
+<!-- FontAwesome -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+<link href="css/ionicons.min.css" rel="stylesheet">
 </head>
 <body>
-
 <script>
 
 var JSBigInt = (function () {
@@ -3683,21 +3686,124 @@ d)).finalize(c)}}});var w=f.algo={};return f}(Math);
 c[d+n]|0;else{var r=a[n-15],g=a[n-2];a[n]=((r<<25|r>>>7)^(r<<14|r>>>18)^r>>>3)+a[n-7]+((g<<15|g>>>17)^(g<<13|g>>>19)^g>>>10)+a[n-16]}r=l+((p<<26|p>>>6)^(p<<21|p>>>11)^(p<<7|p>>>25))+(p&j^~p&k)+q[n]+a[n];g=((e<<30|e>>>2)^(e<<19|e>>>13)^(e<<10|e>>>22))+(e&f^e&m^f&m);l=k;k=j;j=p;p=h+r|0;h=m;m=f;f=e;e=r+g|0}b[0]=b[0]+e|0;b[1]=b[1]+f|0;b[2]=b[2]+m|0;b[3]=b[3]+h|0;b[4]=b[4]+p|0;b[5]=b[5]+j|0;b[6]=b[6]+k|0;b[7]=b[7]+l|0},_doFinalize:function(){var a=this._data,d=a.words,b=8*this._nDataBytes,e=8*a.sigBytes;
 d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)+15]=b;a.sigBytes=4*d.length;this._process();return this._hash},clone:function(){var a=g.clone.call(this);a._hash=this._hash.clone();return a}});s.SHA256=g._createHelper(f);s.HmacSHA256=g._createHmacHelper(f)})(Math);
 </script>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <center>
-        <h1 class="display-2 d-print-none">TurtleCoin Wallet Generator</h1>
-        <h2 class="d-print-block">TurtleCoin Wallet Generator</h2>
+<script>
+    function scrollIt(destination, duration = 200, easing = 'linear', callback) {
 
-      <h5><span class="private"><strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span></h5>
-      </center>
+        const easings = {
+            linear(t) {
+                return t;
+            },
+            easeInQuad(t) {
+                return t * t;
+            },
+            easeOutQuad(t) {
+                return t * (2 - t);
+            },
+            easeInOutQuad(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            },
+            easeInCubic(t) {
+                return t * t * t;
+            },
+            easeOutCubic(t) {
+                return (--t) * t * t + 1;
+            },
+            easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            },
+            easeInQuart(t) {
+                return t * t * t * t;
+            },
+            easeOutQuart(t) {
+                return 1 - (--t) * t * t * t;
+            },
+            easeInOutQuart(t) {
+                return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+            },
+            easeInQuint(t) {
+                return t * t * t * t * t;
+            },
+            easeOutQuint(t) {
+                return 1 + (--t) * t * t * t * t;
+            },
+            easeInOutQuint(t) {
+                return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+            }
+        };
+        const start = window.pageYOffset;
+        const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+        const documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body') [0].clientHeight;
+        const destinationOffset = typeof destination === 'number' ? destination : destination.offsetTop;
+        const destinationOffsetToScroll = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
+        if ('requestAnimationFrame' in window === false) {
+            window.scroll(0, destinationOffsetToScroll);
+            if (callback)
+                callback();
+            return;
+        }
+        function scroll() {
+            const now = 'now' in window.performance ? performance.now() : new Date().getTime();
+            const time = Math.min(1, ((now - startTime) / duration));
+            const timeFunction = easings[easing](time);
+            window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
+            if (window.pageYOffset === destinationOffsetToScroll) {
+                    callback();
+                return;
+            }
+            requestAnimationFrame(scroll);
+        }
+        scroll();
+    }
+    window.onload = function () {
+        var el = document.getElementById('get-started');
+        
+        if (el) {
+            el.addEventListener('click', () => scrollIt(document.getElementById('content').offsetTop - document.querySelector('.nav').clientHeight, 1000, 'easeOutQuart'));
+        }
+    }
+</script>
+<!-- Begin Header -->
+<div id="particles-js"></div>
+<script type="text/javascript" src="js/particles.min.js"></script>
+<script type="text/javascript" src="js/particlesRun.js"></script>
+<header>
+    <!-- Begin Navigation -->
+    <nav class="nav">
+        <div class="container-fluid">
+            <a class="main-logo" href="https://turtlecoin.lol/" target="_blank">
+                <h2>&nbsp;TurtleCoin</h2>
+            </a>
+        </div>
+    </nav>
+    <!-- End Navigation -->
+</header>
+<!-- End Header -->
+
+<div class="banner">
+    <div class="row">
+        <div class="col-12">
+            <center>
+                <img src="images/turtle_shield.svg" alt="TRTL">
+                <h1 class="display-2 d-print-none">TurtleCoin Wallet Generator</h1>
+                <h2 class="d-print-block">TurtleCoin Wallet Generator</h2>
+                <div id="get-started" class="trtl-button">Get Starded&nbsp;
+                    <span class="ion-android-arrow-down"></span>
+                </div>
+            </center>
+        </div>
     </div>
-  </div>
+</div>
+<div class="content" id="content">
+<div class="container">
+    <h5>
+        <span class="private">
+            <strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span>
+    </h5>
   <div class="row  d-print-none">
 <div class="col-2">
 
-    <img class="img-fluid" src="trtl.svg" alt="TurtleCoin">
+    <img class="img-fluid" src="images/trtl.svg" alt="TurtleCoin">
     <center>
     <small>v0.2.2</small>
   </center>
@@ -3817,7 +3923,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
 
 </div>
 </div>
-
+</div>
 
 
 <script>
